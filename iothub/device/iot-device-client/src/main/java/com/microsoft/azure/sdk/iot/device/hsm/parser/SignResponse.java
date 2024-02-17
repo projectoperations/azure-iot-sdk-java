@@ -1,0 +1,29 @@
+/*
+ *  Copyright (c) Microsoft. All rights reserved.
+ *  Licensed under the MIT license. See LICENSE file in the project root for full license information.
+ */
+
+package com.microsoft.azure.sdk.iot.device.hsm.parser;
+
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+
+
+public class SignResponse
+{
+    private static final String DIGEST_NAME = "digest";
+    @Expose
+    @SerializedName(DIGEST_NAME)
+    @Getter
+    private String digest;
+
+    //empty constructor for Gson to use
+    public SignResponse() { }
+
+    public static SignResponse fromJson(String json)
+    {
+        return new GsonBuilder().create().fromJson(json, SignResponse.class);
+    }
+}
